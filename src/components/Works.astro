@@ -1,0 +1,53 @@
+---
+import { projects } from '../data/projects.js';
+---
+
+<section id="works" class="section reveal">
+  <div class="section-header">
+    <div class="section-title-group">
+      <span class="section-marker">§ I</span>
+      <h2 class="section-title">Index of works</h2>
+    </div>
+    <div class="section-meta">
+      FOUR ENGAGEMENTS &nbsp;/&nbsp; 2025–2026
+    </div>
+  </div>
+
+  <div class="idx-head">
+    <span>Nº</span>
+    <span>YEAR</span>
+    <span>WORK / CONTEXT</span>
+    <span>VIEW</span>
+  </div>
+
+  {projects.map((p) => (
+    <article class="idx-row">
+      <div class="idx-num">{p.num}</div>
+      <div class="idx-year">{p.year}</div>
+      <div class="idx-body">
+        <div class="idx-title">
+          {p.title} <span class="idx-cat">— {p.category}</span>
+        </div>
+        <div class="idx-desc">{p.description}</div>
+
+        <div class="idx-detail">
+          {p.detail.map((d) => (
+            <>
+              <div class="dt-key">{d.key}</div>
+              <div class="dt-val" set:html={d.val}></div>
+            </>
+          ))}
+        </div>
+
+        <div class="idx-stack">{p.stack}</div>
+      </div>
+      <div class="idx-action">
+        {p.status === 'open' && p.href ? (
+          <a href={p.href}>→ open</a>
+        ) : (
+          <span class="closed">— closed</span>
+        )}
+      </div>
+    </article>
+  ))}
+</section>

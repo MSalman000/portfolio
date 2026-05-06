@@ -1,0 +1,49 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Muhammad Salman — Software Engineer',
+  description = 'Software engineer building backend systems and applied machine learning infrastructure.',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <div class="paper-grain"></div>
+
+    <main>
+      <slot />
+    </main>
+
+    <script>
+      import { initScene } from '../scripts/scene.js';
+      import { initReveal } from '../scripts/reveal.js';
+
+      initScene('three-bg');
+      initReveal();
+    </script>
+  </body>
+</html>
